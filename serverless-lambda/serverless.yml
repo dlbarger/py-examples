@@ -1,0 +1,53 @@
+# serverless.yml
+
+service: dsapp
+
+package:
+  individually: true
+
+plugins:
+  - serverless-python-requirements
+  - serverless-step-functions
+
+custom:
+  pythonRequirements:
+    dockerizePip: non-linux
+    zip: true
+    slim: true
+
+provider:
+  name: aws
+  runtime: python2.7
+  myStage: ${opt:stage, 'dev'}
+  myRegion: 'AWS::Region'
+
+functions:
+  getData:
+    handler: index.main
+    module: ds-get-data
+  model:
+    handler: index.main
+    module: ds-model
+
+stepFunctions:
+  stateMachines:
+    AWSPrototype:
+      name: DSApp
+      definition:
+        StartAt: GetData
+        States:
+          GetData:
+            Type: Task
+            Resource:  arn:aws:lambda:us-east-1:765747333842:function:dsapp-dev-getData
+            ResultPath: $.event
+            Next: Model
+          Model:
+            Type: Task
+            Resource:  arn:aws:lambda:us-east-1:765747333842:function:dsapp-dev-model
+            ResultPath: $.event
+            Next: EndState
+          EndState:
+            Type: Pass
+            End: true
+
+

@@ -13,7 +13,7 @@ except ImportError:
     pass
     
 import pandas as pd
-from six import StringIO
+from StringIO import StringIO
 import boto3
 
 #-----------------------------------------------------------------------------#

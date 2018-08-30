@@ -15,7 +15,7 @@ except ImportError:
 
 import pandas as pd
 from sklearn.cluster import KMeans
-from io import StringIO
+from StringIO import StringIO
 import boto3
 
 #-----------------------------------------------------------------------------#
