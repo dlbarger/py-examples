@@ -1,0 +1,6 @@
+{
+    "bucket": "barger-training",
+    "input_key": "data/outputs/iris.csv",
+    "stage_key": "data/outputs/iris_stage.csv",
+    "output_key": "data/outputs/iris_output.csv"
+}

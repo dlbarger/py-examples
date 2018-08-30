@@ -4,7 +4,7 @@ Author:     Dennis Barger
 Created:    8/29/2018
 
 Description:
-Converts bytes object to pandas data frame.
+Converts object of bytest data type to pandas data frame.
 '''
 
 import pandas as pd
