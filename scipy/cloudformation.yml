@@ -1,0 +1,16 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: Example serverless app using scipy package
+Resources:
+  dsLambdaLayerExample:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: dsLambdaLayerExample/lambda_function.main
+      Runtime: python3.6
+      Description: ''
+      MemorySize: 128
+      Timeout: 15
+      Role: 'arn:aws:iam:678977883400:role/acct-managed/lambda_basic_execution'
+      CodeUri: .debug/
+      Layers:
+        - arn:aws:lambda:us-east-1:668099181075:layer:AWSLambda-Python36-SciPy1x:2
